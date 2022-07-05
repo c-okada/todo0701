@@ -40,6 +40,7 @@
                 </div>
               </form>
             </div>
+            </div>
           </nav>
         </div>
       </div>
