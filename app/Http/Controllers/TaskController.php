@@ -11,6 +11,8 @@ class TaskController extends Controller
     public function index(int $id){
         //全てのフォルダを取得する
         $folders=Folder::all();
+        dd($folders);
+        exit;
 
         //選ばれたフォルダを取得する
         $current_folder=Folder::find($id);
