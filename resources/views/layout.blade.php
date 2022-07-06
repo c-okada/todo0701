@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>ToDo App</title>
+  <!-- styles.bladeの読み込み -->
   @yield('styles')
   <link rel="stylesheet" href="/css/styles.css">
 </head>
@@ -15,8 +16,10 @@
   </nav>
 </header>
 <main>
+  <!-- content.bladeの読み込み -->
   @yield('content')
 </main>
+  <!-- scripts.bladeの読み込み -->
 @yield('scripts')
 </body>
 </html>

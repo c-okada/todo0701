@@ -14,6 +14,7 @@ class CreateFoldersTable extends Migration
     public function up()
     {
         Schema::create('folders', function (Blueprint $table) {
+            //foldersテーブル設計の情報を記述
             $table->increments('id');
             $table->string('title',20);
             $table->timestamps();

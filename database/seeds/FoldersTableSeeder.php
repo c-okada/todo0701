@@ -13,8 +13,10 @@ class FoldersTableSeeder extends Seeder
      */
     public function run()
     {
+        //作りたいフォルダの名前を格納する
         $titles=['プライベート','仕事','旅行'];
-
+        
+        //フォルダ名に対してループ処理させる
         foreach($titles as $title){
             DB::table('folders')->insert([
                 'title' => $title,

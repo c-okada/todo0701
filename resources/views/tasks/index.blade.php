@@ -1,5 +1,7 @@
+<!-- layout.bladeの使用宣言 -->
 @extends('layout')
 
+<!-- create.bladeの@section('content')呼び出し -->
 @section('content')
     <div class="container">
       <div class="row">
@@ -10,6 +12,7 @@
               <a href="{{ route('folders.create') }}" class="btn btn-default btn-block">フォルダを追加する</a>
             </div>
             <div class="list-group">
+              <!-- @をつけるとループ文がかける -->
               @foreach($folders as $folder)
               <a href="{{route('tasks.index',['id'=>$folder->id])}}" class="list-group-item {{$current_folder_id === $folder->id ? 'active' : ''}}">
                 {{$folder->title}}
@@ -41,7 +44,7 @@
                   <td>{{$task->title}}</td>
                   <td><span class="label {{$task->status_class}}">{{$task->status_label}}</span></td>
                   <td>{{$task->formatted_due_date}}</td>
-                  <td><a href="#">編集</a></td>
+                  <td><a href="{{route('tasks.edit',['id'=>$task->folder_id,'task_id'=>$task->id])}}">編集</a></td>
                 </tr>
                 @endforeach
               </tbody>
