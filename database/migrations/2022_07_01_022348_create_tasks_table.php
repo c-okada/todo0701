@@ -14,6 +14,7 @@ class CreateTasksTable extends Migration
     public function up()
     {
         Schema::create('tasks', function (Blueprint $table) {
+            //tasksテーブル設計の情報を記述
             $table->increments('id');
             $table->integer('folder_id')->unsigned();
             $table->string('title',100);

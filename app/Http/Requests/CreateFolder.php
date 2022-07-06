@@ -13,6 +13,7 @@ class CreateFolder extends FormRequest
      */
     public function authorize()
     {
+        //今回はこの機能は使用しないので true を返す（つまりリクエストを受け付ける）
         return true;
     }
 
@@ -24,12 +25,14 @@ class CreateFolder extends FormRequest
     public function rules()
     {
         return [
+            //HTML側でのinput要素のname属性に対応します。キーに対する値の部分でルールを指定します。
             'title'=>'required|max:20',
         ];
     }
 
     public function attributes(){
         return[
+            //返されるtitleをフォルダ名に変換している
             'title'=>'フォルダ名',
         ];
     }

@@ -1,19 +1,8 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>todo</title>
-  <link rel="stylesheet" href="/css/styles.css">
-</head>
-<body>
-  <header>
-    <nav class="my-navbar">
-      <a href="/" class="my-navbar-brand">ToDo App</a>
-    </nav>
-  </header>
-  <main>
+<!-- layout.bladeの使用宣言 -->
+@extends('layout')
+
+<!-- create.bladeの@section('content')呼び出し -->
+@section('content')
     <div class="container">
       <div class="row">
         <div class="col col-md-4">
@@ -23,6 +12,7 @@
               <a href="{{ route('folders.create') }}" class="btn btn-default btn-block">フォルダを追加する</a>
             </div>
             <div class="list-group">
+              <!-- @をつけるとループ文がかける -->
               @foreach($folders as $folder)
               <a href="{{route('tasks.index',['id'=>$folder->id])}}" class="list-group-item {{$current_folder_id === $folder->id ? 'active' : ''}}">
                 {{$folder->title}}
@@ -36,15 +26,15 @@
             <div class="panel-heading">タスク</div>
             <div class="panel-body">
               <div class="text-right">
-                <a href="#" class="btn btn-default btn-block">タスクを追加する</a>
+                <a href="{{route('tasks.create',['id'=>$current_folder_id])}}" class="btn btn-default btn-block">タスクを追加する</a>
               </div>
             </div>
             <table class="table">
               <thread>
                 <tr>
-                  <th></th>
-                  <th></th>
-                  <th></th>
+                  <th>タイトル</th>
+                  <th>状態</th>
+                  <th>期限</th>
                   <th></th>
                 </tr>
               </thread>
@@ -54,7 +44,7 @@
                   <td>{{$task->title}}</td>
                   <td><span class="label {{$task->status_class}}">{{$task->status_label}}</span></td>
                   <td>{{$task->formatted_due_date}}</td>
-                  <td><a href="#">編集</a></td>
+                  <td><a href="{{route('tasks.edit',['id'=>$task->folder_id,'task_id'=>$task->id])}}">編集</a></td>
                 </tr>
                 @endforeach
               </tbody>
@@ -63,7 +53,4 @@
         </div>
       </div>
     </div>
-  </main>
-
-</body>
-</html>
+@endsection

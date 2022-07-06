@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Carbon\Carbon;
 
+//アクセサの使用
 class Task extends Model
 {
     //状態定義

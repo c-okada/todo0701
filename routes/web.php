@@ -19,3 +19,9 @@ Route::get('/folders/create','FolderController@showCreateForm')->name('folders.c
 Route::post('/folders/create','FolderController@create');
 
 //タスク作成機能
+Route::get('/folders/{id}/tasks/create','TaskController@showCreateForm')->name('tasks.create');
+Route::post('/folders/{id}/tasks/create','TaskController@create');
+
+//タスク編集機能
+Route::get('/folders/{id}/tasks/{task_id}/edit','TaskController@showEditForm')->name('tasks.edit');
+Route::post('/folders/{id}/tasks/{task_id}/edit','TaskController@edit');
