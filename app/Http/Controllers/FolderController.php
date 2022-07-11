@@ -15,6 +15,7 @@ class FolderController extends Controller
   public function showCreateForm(){
     return view('folders/create');
   }
+  
   // 引数にインポートしたRequestクラスを受け入れるが、CreateFoldeはRequestを継承しているため使用できる。
   public function create(CreateFolder $request){
     // フォルダモデルのインスタンスを作成する

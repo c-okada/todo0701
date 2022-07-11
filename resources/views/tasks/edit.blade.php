@@ -35,7 +35,7 @@
               <div class="form-group">
                 <label for="status">状態</label>
                 <select name="status" id="status" class="form-control">
-                  @foreach(\App\Task::STATUS as $key => $val
+                  @foreach(\App\Task::STATUS as $key => $val)
                     <!-- 初期化されたボックスに、データを入れ直して一致する状態を出力する -->
                     <option
                         value="{{ $key }}"

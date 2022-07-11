@@ -35,6 +35,13 @@ return [
 
     'connections' => [
 
+        //期限日のバリデーションテストコード準備
+        'sqlite_testing' => [
+            'driver' => 'sqlite',
+            'database' => ':memory:',
+            'prefix' => '',
+        ],
+        
         'sqlite' => [
             'driver' => 'sqlite',
             'url' => env('DATABASE_URL'),

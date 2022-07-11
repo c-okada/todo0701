@@ -13,6 +13,9 @@ class FoldersTableSeeder extends Seeder
      */
     public function run()
     {
+        //userを一行だけ取得する
+        $user=DB::table('users')->first();
+
         //作りたいフォルダの名前を格納する
         $titles=['プライベート','仕事','旅行'];
         
@@ -20,6 +23,8 @@ class FoldersTableSeeder extends Seeder
         foreach($titles as $title){
             DB::table('folders')->insert([
                 'title' => $title,
+                //userテーブルから取得した行をuser_idに設定する
+                'user_id'=>$user->id,
                 'created_at'=>Carbon::now(),
                 'updated_at'=>Carbon::now(),
             ]);
