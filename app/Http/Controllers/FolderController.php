@@ -8,6 +8,8 @@ use App\Folder;
 use Illuminate\Http\Request;
 // CreateFolderクラスのインポート
 use App\Http\Requests\CreateFolder;
+// Authクラスをインポートする
+use Illuminate\Support\Facades\Auth;
 
 class FolderController extends Controller
 {
@@ -22,12 +24,18 @@ class FolderController extends Controller
     $folder = new Folder();
     // タイトルに入力値を代入する
     $folder->title = $request->title;
-    // インスタンスの状態をデータベースに書き込む
-    $folder->save();
+
+    //ユーザーに紐づけて保存する
+    Auth::user()->folders()->save($folder);
+    
+    // インスタンスの状態をデータベースに書き込む、ユーザーの紐づけで全部保存しているので削除でOK
+    // $folder->save();
+
 
     //リダイレクト処理(フォーム送信を行った後遷移するページ指定)
     return redirect()->route('tasks.index', [
         'id' => $folder->id,
     ]);
   }
+
 }
