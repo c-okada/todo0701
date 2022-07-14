@@ -34,7 +34,7 @@ class FolderController extends Controller
 
     //リダイレクト処理(フォーム送信を行った後遷移するページ指定)
     return redirect()->route('tasks.index', [
-        'id' => $folder->id,
+        'folder' => $folder->id,
     ]);
   }
 
