@@ -81,6 +81,13 @@ class TaskController extends Controller
         //バインディングのため削除
         // $task=Task::find($task_id);
 
+        //他のアカウントから編集ページに飛ぶのを防ぐ
+        // if($folder->id !== $task->folder_id){
+        //     abort(404);
+        // }
+        //処理をメソッドにまとめる
+        $this->checkRelation($folder,$task);
+
         //テンプレートにデータを渡す
         return view('tasks/edit',[
             'task'=>$task,
@@ -95,9 +102,14 @@ class TaskController extends Controller
         //バインディングのため削除
         // $task=Task::find($task_id);
 
+        //他のアカウントから編集ページに飛ぶのを防ぐ
+        // if($folder->id !== $task->folder_id){
+        //     abort(404);
+        // }
+        //処理をメソッドにまとめる
+        $this->checkRelation($folder,$task);
+
         //編集対象のタスクデータに入力値を詰めて save
-        DD($task);
-        exit;
         $task->title=$request->title;
         $task->status=$request->status;
         $task->due_date=$request->due_date;
@@ -107,5 +119,11 @@ class TaskController extends Controller
         return redirect()->route('tasks.index',[
             'folder'=>$task->folder_id,
         ]);
+    }
+
+    private function checkRelation(Folder $folder,Task $task){
+        if($folder->id !== $task->folder_id){
+            abort(404);
+        }
     }
 }
