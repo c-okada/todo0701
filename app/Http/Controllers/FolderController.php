@@ -10,6 +10,8 @@ use Illuminate\Http\Request;
 use App\Http\Requests\CreateFolder;
 // Authクラスをインポートする
 use Illuminate\Support\Facades\Auth;
+//削除のためTaskControllerクラスのインポート
+use App\Task;
 
 class FolderController extends Controller
 {
@@ -36,6 +38,22 @@ class FolderController extends Controller
     return redirect()->route('tasks.index', [
         'folder' => $folder->id,
     ]);
+  }
+
+  
+  public function delete(Folder $folder){
+    // $task = new Task;
+    // dd($task);
+    // exit;
+    $folder->delete();
+    $folder->tasks()->delete();
+
+    return redirect()->route('home',
+    [
+      // 'folder'=> $folder_id,
+  ]);
+
+
   }
 
 }

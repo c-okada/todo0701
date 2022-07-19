@@ -22,6 +22,8 @@ class CreateTasksTable extends Migration
             $table->integer('status')->default(1);
             $table->timestamps();
 
+            $table->softDeletes();
+
             //外部キーを設定する
             $table->foreign('folder_id')->references('id')->on('folders');
         });
@@ -35,5 +37,10 @@ class CreateTasksTable extends Migration
     public function down()
     {
         Schema::dropIfExists('tasks');
+
+        Schema::table('texts', function (Blueprint $table) {
+            $table->dropSoftDeletes();
+        });
+
     }
 }

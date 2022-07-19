@@ -14,9 +14,12 @@
             <div class="list-group">
               <!-- @をつけるとループ文がかける -->
               @foreach($folders as $folder)
+              <div class="list-group-block">
               <a href="{{route('tasks.index',['folder'=>$folder->id])}}" class="list-group-item {{$current_folder_id === $folder->id ? 'active' : ''}}">
                 {{$folder->title}}
               </a>
+              <a href="{{route('folder.delete',['folder'=>$folder->id])}}">削除</a>
+              </div>
               @endforeach
             </div>
           </nav>
@@ -45,6 +48,7 @@
                   <td><span class="label {{$task->status_class}}">{{$task->status_label}}</span></td>
                   <td>{{$task->formatted_due_date}}</td>
                   <td><a href="{{route('tasks.edit',['folder'=>$task->folder_id,'task'=>$task->id])}}">編集</a></td>
+                  <td><a href="{{route('tasks.delete',['folder'=>$task->folder_id,'task'=>$task->id])}}" id="delete">削除</a></td>
                 </tr>
                 @endforeach
               </tbody>
@@ -53,4 +57,13 @@
         </div>
       </div>
     </div>
+  <script>
+    var delete = document.getElementById('delete');
+ 
+    delete.addEventListener('click', function() {
+  
+     window.confirm('削除しますか？');
+  
+ })
+  </script>
 @endsection

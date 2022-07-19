@@ -44,3 +44,16 @@ a.my-navbar-item:hover {
 .form-control[readonly] {
   background-color: #fff;
 }
+
+.list-group-block{
+  display: flex;
+  justify-content: space-between;
+}
+
+.list-group-item{
+  width: 90%;
+}
+
+.list-group-block button{
+  width: 10%;
+}

@@ -1,5 +1,7 @@
 <?php
 
+use App\Folder;
+use App\Task;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -35,8 +37,25 @@ Route::group(['middleware'=>'auth'],function(){
     // Route::post('/folders/{id}/tasks/{task_id}/edit','TaskController@edit');
     Route::get('/folders/{folder}/tasks/{task}/edit','TaskController@showEditForm')->name('tasks.edit');
     Route::post('/folders/{folder}/tasks/{task}/edit','TaskController@edit');
+
+    // 削除機能
+    Route::get('/folders/{folder}/softdelete','FolderController@delete')->name('folder.delete');
+    Route::get('/folders/{folder}/tasks/{task}/edit/softdelete','TaskController@delete')->name('tasks.delete');
+
   });
 });
 
 //ログインしてなくても接続できるルート
 Auth::routes();
+
+
+
+// // //フォルダ削除機能
+// Route::get('/folders/softdelete',function(){
+//   Folder::find(1)->delete();
+// });
+
+// //タスク削除機能
+// Route::get('/folders/softdelete',function(){
+//   Task::find(4)->delete();
+// });

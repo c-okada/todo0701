@@ -126,4 +126,14 @@ class TaskController extends Controller
             abort(404);
         }
     }
+
+    public function delete(Folder $folder,Task $task){
+        // $folder->delete();
+        // dd($task);
+        // exit;
+        $task->delete();
+        return redirect()->route('tasks.index', [
+            'folder' => $folder->id,
+        ]);
+          }
 }

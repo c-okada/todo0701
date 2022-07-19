@@ -18,6 +18,8 @@ class CreateFoldersTable extends Migration
             $table->increments('id');
             $table->string('title',20);
             $table->timestamps();
+
+            $table->softDeletes();
         });
     }
 
@@ -29,5 +31,9 @@ class CreateFoldersTable extends Migration
     public function down()
     {
         Schema::dropIfExists('folders');
+
+        Schema::table('texts', function (Blueprint $table) {
+            $table->dropSoftDeletes();
+        });
     }
 }

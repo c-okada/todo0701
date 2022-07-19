@@ -4,10 +4,16 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Carbon\Carbon;
+//ソフトデリート
+use Illuminate\Database\Eloquent\SoftDeletes;
+
 
 //アクセサの使用
 class Task extends Model
 {
+    //ソフトデリート
+    use SoftDeletes;
+
     //状態定義
     const STATUS =[
         1=>['label'=>'未着手','class'=>'label-danger'],
